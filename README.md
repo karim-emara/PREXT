@@ -24,11 +24,11 @@ PREXT is a unified and extensible framework that simulate pseudonym change schem
 - Download PREXT and move "Prext" folder to veins-4.4\src\veins\modules\
 - Change veins configurations to include PREXT during its build by right click on "veins" project in the omnet++ IDE and select "Properties". Then, change the following:
      - On the left tree, Expand "C/C++ General" node -> Select "Paths and Symbols":
-          On the right view, Select "Include" tab -> add the following paths "~/Eigen" and "/veins/src/veins/modules/Prext/include"
+          On the right view, Select "Includes" tab"/*"GNU C++"* ->  add the following paths "~/Eigen", "omnetpp-5.0/include/omnetpp" and "/veins/src/veins/modules/Prext/include"
           On the same view, Select "Library Paths" tab -> add the following path "/veins/src/veins/modules/Prext/lib"
      - On the left tree, Expand "OMNET++" -> Select Makemake:
           On the right view, Expand "veins: custom makefile" -> Select "src: makemake..." -> On the right, click on "Options..." button under "Makemake" radio button. 
-          On the pop-up dialog, Select "Link" tab -> add a library in the first list "Additional libraries to link with: (-l option)" by clicking on the small button just above the list -> In the pop-up dialog, write "NNPDA", then click "OK"
+          On the pop-up dialog, Select "Link" tab -> press "More>>" -> add a library in the *first* list "Additional libraries to link with: (-l option)" by clicking on the small button just above the list -> In the pop-up dialog, write "NNPDA", then click "OK"
      - Press "OK" on all previous dialogs and Rebuild veins
 
 ##4. Demo
