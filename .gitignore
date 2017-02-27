@@ -20,8 +20,8 @@
 # Compiled Static libraries
 *.lai
 *.la
-*.a
-*.lib
+#*.a
+#*.lib
 
 # Executables
 *.exe

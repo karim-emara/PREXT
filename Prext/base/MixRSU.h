@@ -43,7 +43,7 @@ class MixRSU : public BaseApplLayer {
 
         int headerLength;
         int dataLength;
-        double advertiseInterval;
+        //double advertiseInterval;
 
         simtime_t individualOffset;
         int myId;

@@ -40,8 +40,8 @@ void MixRSU::initialize(int stage) {
         headerLength = par("headerLength");
         dataLength = par("dataLength");
         //simulate asynchronous channel access
-        advertiseInterval = par("advertiseInterval").doubleValue();
-        double offSet = dblrand() * (advertiseInterval/2);
+
+        double offSet = dblrand() * (par("advertiseInterval").doubleValue()/2);
         offSet = offSet + floor(offSet/0.050)*0.050;
         scheduleAt(simTime() + offSet, sendAdvertiseEvt);
 
@@ -73,19 +73,19 @@ MixZoneAd* MixRSU::prepareAdvertise() {
 
     zad->setTimestamp(simTime());
     BaseMobility* mob = (BaseMobility*)this->getParentModule()->getSubmodule("mobility");
-    Coord pos(mob->par("x"),mob->par("y"),mob->par("z"));
+    Coord pos(mob->par("x").doubleValue(),mob->par("y").doubleValue(),mob->par("z").doubleValue());
     zad->setSenderPos(pos);
-    zad->setZoneType(par("zoneType"));
+    zad->setZoneType(par("zoneType").longValue());
 
     if (par("zoneType").longValue() == 1) { //circular
-        zad->setCircularRange(par("zoneCircularRange"));
+        zad->setCircularRange(par("zoneCircularRange").longValue());
         cDisplayString& dispStr = getParentModule()->getDisplayString();
         stringstream  str;
         str << "p=" << mob->par("x").doubleValue() << "," << mob->par("y").doubleValue() << ";r= " << par("zoneCircularRange").doubleValue() << ",lavender,,1;i=block/routing;is=s";
         dispStr.parse(str.str().c_str());
     }
     else {
-        vector<Convex> poly = parseConvexPolygon(par("zoneConvexPolygons"));
+        vector<Convex> poly = parseConvexPolygon(par("zoneConvexPolygons").stdstringValue());
         zad->setZonePolygonArraySize(poly.size());
         for (unsigned int i = 0; i< poly.size(); i++)
             zad->setZonePolygon(i, poly[i]);
@@ -100,7 +100,7 @@ void MixRSU::handleSelfMsg(cMessage* msg) { // it an event/self-msg that has be 
             msg->setTimestamp(simTime());
             sendDelayedDown(msg ,individualOffset);
 
-            scheduleAt(simTime() + advertiseInterval, sendAdvertiseEvt);
+            scheduleAt(simTime() + par("advertiseInterval").doubleValue(), sendAdvertiseEvt);
             break;
         }
         default: {

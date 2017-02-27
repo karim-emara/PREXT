@@ -27,9 +27,9 @@ message WaveShortMessage;
 // TODO generated message class
 //
 message WAVEBeacon extends WaveShortMessage {
-    long senderPsynm;
+    uint64_t senderPsynm;
     Coord senderVel;
     double senderAngle;
-    bool CPN_readyFlag;    
+    bool CPN_readyFlag;        
     bool isEncrypted;	//message should be encrypted in mix-zone, thus eavesdropper cannot read it
 }

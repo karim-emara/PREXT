@@ -28,9 +28,9 @@ void CSP::initialize(int stage)
 {
     BasePrivLayer::initialize(stage);
     if(stage==0){
-        psynmLifetime = par("psynmLifetime").doubleValue();
-        silentPeriod = par("silentPeriod").doubleValue();
-        double drift = par("clockDrift").doubleValue()/1000.0;
+        psynmLifetime = par("psynmLifetime").longValue();
+        silentPeriod = par("silentPeriod").longValue();
+        double drift = par("clockDrift").longValue()/1000.0;
 
         double cycleTime = psynmLifetime + silentPeriod;
 

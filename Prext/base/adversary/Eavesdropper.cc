@@ -28,8 +28,8 @@ void Eavesdropper::initialize(int stage) {
 	BaseApplLayer::initialize(stage);
 	if (stage == 0) {
 	    myId = getParentModule() -> getIndex();
-	    dumpEncrypted = par("dumpEncrypted");
-	    localDump = par("localDump");
+	    dumpEncrypted = par("dumpEncrypted").boolValue();
+	    localDump = par("localDump").boolValue();
 	    nBcn = 0;
 	    encounteredPsynms.clear();
 

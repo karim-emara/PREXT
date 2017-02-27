@@ -36,8 +36,8 @@ public:
     {}
     virtual void initialize(int);
     virtual void finish();
-    inline unsigned long getCurrentPsynm() {
-          return (((unsigned long)myId) << 32) | ((unsigned long)psynmCnt);
+    inline uint64_t getCurrentPsynm() {
+          return (((uint64_t)myId) << 32) | ((uint64_t)psynmCnt);
       }
 
 protected:

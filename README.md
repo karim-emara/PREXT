@@ -34,7 +34,7 @@ PREXT is a unified and extensible framework that simulate pseudonym change schem
 ![](img/config2.png?raw=true)
 
 2. On the left tree, Expand "OMNET++" -> Select Makemake: On the right view, Expand "veins: custom makefile" -> Select "src: makemake..." -> On the right, click on "Options..." button under **Makemake** radio button. On the pop-up dialog, Select "Link" tab -> press **More>>** -> add a library in the **first** list "Additional libraries to link with: (-l option)" by clicking on the small button just above the list -> 
-  * In the pop-up dialog, write "NNPDA", then click "OK"
+  * In the pop-up dialog, write "NNPDA" (or "NNPDA_win" for windows installation), then click "OK"
 
 ![](img/config3.png?raw=true)
 
@@ -45,7 +45,7 @@ We created an example scenario for PREXT (prextdemo folder) on a map of the city
   
 To run the demo, copy "prextdemo" folder to "/veins/examples/". In the omnet.ini configuration file, we have added a configuration section for each privacy scheme with example parameter settings. To test one of these schemes, you need to run the simulation with its corresponding configuration section. Don't forgot to run the "sumolaunch" script in background. At the end of the simulation, the tracking results are displayed in the simulation log showing various privacy metrics such as traceability and entropy. In addition, 
 
-We compiled a virtual box virtual machine running ubuntu 16.04 in which OMNeT++, SUMO, Veins and PREXT installed and configured. You can download this machine here: https://dropit.uni.lu/invitations?share=05af4366af8f6f6d9a44&dl=0
+We compiled a virtual machine running ubuntu 16.04 in which OMNeT++, SUMO, Veins and PREXT installed and configured. You can download this machine here: https://dropit.uni.lu/invitations?share=05af4366af8f6f6d9a44&dl=0
 To run this virtual machine, you need to install VirtualBox (https://www.virtualbox.org/wiki/Downloads). 
 
 ## 5. Further Information

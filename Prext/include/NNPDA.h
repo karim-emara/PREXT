@@ -20,9 +20,9 @@ public:
         vehStartTime = vehEndTime = nPsynmChange = nConfusion =  bestTrackId = bestTrackLifetime = 0;
         psynmChngSumEntropy = psynmChngMaxEntropy = 0;
         psynmChngMaxASS = 0;
-        lastPsynm = ULLONG_MAX;
+        lastPsynm = ULONG_MAX;
     }
-    unsigned long lastPsynm;
+    uint64_t lastPsynm;
     unsigned int vehStartTime;
     unsigned int vehEndTime;
     unsigned int nPsynmChange;
@@ -48,9 +48,9 @@ class NNPDA {
     // skipatfirst
     // recorddrifts
 
-    map <unsigned long, kalmanTrack> trackList;
-    map<unsigned long, bcnSample> tmpScan;
-    set<unsigned long> encounteredPsynms;
+    map <uint64_t, kalmanTrack> trackList;
+    map<uint64_t, bcnSample> tmpScan;
+    set<uint64_t> encounteredPsynms;
     class AssignTrackTime {
     public:
         AssignTrackTime(unsigned int tr, unsigned int mt, unsigned int ut)
@@ -63,17 +63,17 @@ class NNPDA {
     void recordInitialEvaluation();
     void recordTrackEvaluation();
     void recordASEntropyEvaluation(map<unsigned int, pair<unsigned int, double> >  & asSizeEntropy);
-    void fillUnEncryptedBcns(const map<unsigned long, bcnSample> & rcvdBcns);
+    void fillUnEncryptedBcns(const map<uint64_t, bcnSample> & rcvdBcns);
 
-    vector< vector<double> > calcAssignmentProbability(const vector<map <unsigned long, kalmanTrack>::iterator> & unmatchedTracks, vector<map <unsigned long, bcnSample>::iterator> & scanIter, map<unsigned int, pair<unsigned int, double> > &asentropy);
+    vector< vector<double> > calcAssignmentProbability(const vector<map <uint64_t, kalmanTrack>::iterator> & unmatchedTracks, vector<map <uint64_t, bcnSample>::iterator> & scanIter, map<unsigned int, pair<unsigned int, double> > &asentropy);
     void eliminateBeaconsOfSeenPsynms();
-    map <unsigned long, kalmanTrack>::iterator  outdateUnMatchedTrack(map <unsigned long, kalmanTrack>::iterator track);
+    map <uint64_t, kalmanTrack>::iterator  outdateUnMatchedTrack(map <uint64_t, kalmanTrack>::iterator track);
     void predictTrackList();
-    void matchBeaconsToTracksByPsynm(vector<map <unsigned long, kalmanTrack>::iterator> & anonyInactiveSet, vector<map <unsigned long, kalmanTrack>::iterator> & anonyActiveSet);
+    void matchBeaconsToTracksByPsynm(vector<map <uint64_t, kalmanTrack>::iterator> & anonyInactiveSet, vector<map <uint64_t, kalmanTrack>::iterator> & anonyActiveSet);
     void matchBeaconsToTracksByNNPDA(const vector<int> & AssignArr,
-    const vector<map <unsigned long, bcnSample>::iterator> & scanIter,
-    vector<map <unsigned long, kalmanTrack>::iterator> & AnonySetTracks);
-    void createNewTracksforUnmatchedBcns(map<unsigned long, bcnSample> scan);
+    const vector<map <uint64_t, bcnSample>::iterator> & scanIter,
+    vector<map <uint64_t, kalmanTrack>::iterator> & AnonySetTracks);
+    void createNewTracksforUnmatchedBcns(map<uint64_t, bcnSample> scan);
     void calcVehicleNormEntropy(unsigned int v, const vector< vector<double> > & pTO, double Sm, double & entropy, unsigned int & asSize);
     void printMapping(ofstream &out);
 
@@ -88,7 +88,7 @@ public:
 
     void finalizeEvaluation();
     vector<kalmanTrack> getTrackList();
-    void trackBeacons(const map<unsigned long, bcnSample> & scan);
+    void trackBeacons(const map<uint64_t, bcnSample> & scan);
     void deleteFarTracks(double distanceSq, double localx, double localy);
 
     NNPDA();

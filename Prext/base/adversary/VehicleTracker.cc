@@ -24,11 +24,11 @@ void VehicleTracker::initialize()
     trackerInitTime = clock();
     outNVeh.setName("nVeh");
 
-    enableTracking = par("enableTracking");
-    exportEncrypted = par("exportEncrypted");
-    exportBeacons = par("exportBeacons");
-    matlabfileformat = par("matlabfileformat");
-    trackInterval = par("trackInterval");
+    enableTracking = par("enableTracking").boolValue();
+    exportEncrypted = par("exportEncrypted").boolValue();
+    exportBeacons = par("exportBeacons").boolValue();
+    matlabfileformat = par("matlabfileformat").boolValue();
+    trackInterval = par("trackInterval").doubleValue();
     timestepIdx = 1;
     if (par("fullCoverage").boolValue())
         createFullCoverageEavesdropper();
@@ -44,11 +44,11 @@ void VehicleTracker::initialize()
         outfile.precision(4);
     }
     if (enableTracking) {
-        double gateSize = par("gateSize");
+        double gateSize = par("gateSize").doubleValue();
         unsigned int waitBfrDelete = ceil(par("waitBfrDelete").doubleValue()/trackInterval);
         unsigned int maxSilence = ceil(par("maxSilence").doubleValue()/trackInterval);
-        double anonomitySetPthreshold = par("anonomitySetPthreshold");
-        kalmanTrack::initKalmanParam(trackInterval, par("kalman_p0"), par("kalman_q"), par("kalman_rp"), par("kalman_rv"));
+        double anonomitySetPthreshold = par("anonomitySetPthreshold").doubleValue();
+        kalmanTrack::initKalmanParam(trackInterval, par("kalman_p0").doubleValue(), par("kalman_q").doubleValue(), par("kalman_rp").doubleValue(), par("kalman_rv").doubleValue());
         tracker.initNNPDAParam(gateSize, waitBfrDelete, maxSilence);
         tracker.enableEvaluation(anonomitySetPthreshold);
 
@@ -186,7 +186,7 @@ void VehicleTracker::finish() {
 
 }
 void VehicleTracker::removeEncryptedBeacons() {
-    map<unsigned long, bcnSample>::iterator it = rcvdBcns.begin();
+    map<uint64_t, bcnSample>::iterator it = rcvdBcns.begin();
     while (it != rcvdBcns.end())
         if (it->second.bEncrypted)
             it = rcvdBcns.erase(it);
@@ -195,7 +195,7 @@ void VehicleTracker::removeEncryptedBeacons() {
 
 }
 void VehicleTracker::exportWAVEBeacon() {
-   map<unsigned long, bcnSample>::iterator it = rcvdBcns.begin();
+   map<uint64_t, bcnSample>::iterator it = rcvdBcns.begin();
    for (; it != rcvdBcns.end(); it++)
        if (!it->second.bEncrypted || (exportEncrypted && it->second.bEncrypted))
        outfile << it->second.timestampe << "\t"
@@ -210,7 +210,7 @@ void VehicleTracker::exportWAVEBeacon() {
 }
 
 void VehicleTracker::exportWAVEBeaconMat() {
-   map<unsigned long, bcnSample>::iterator it = rcvdBcns.begin();
+   map<uint64_t, bcnSample>::iterator it = rcvdBcns.begin();
    outfile << "veinsdata{" << timestepIdx++ << "} = [" << endl;
    for (; it != rcvdBcns.end(); it++)
        if (!it->second.bEncrypted || (exportEncrypted && it->second.bEncrypted))

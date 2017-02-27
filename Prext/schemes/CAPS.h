@@ -54,7 +54,7 @@ protected:
 
       simsignal_t sSilentTimes;
 
-      map<unsigned long, bcnSample> tmpBeacons;
+      map<uint64_t, bcnSample> tmpBeacons;
       NNPDA tracker;
       kalmanTrack selfTrack;
       int curT;

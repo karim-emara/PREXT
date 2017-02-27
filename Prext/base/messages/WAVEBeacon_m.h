@@ -28,7 +28,7 @@
  * //
  * message WAVEBeacon extends WaveShortMessage
  * {
- *     long senderPsynm;
+ *     uint64_t senderPsynm;
  *     Coord senderVel;
  *     double senderAngle;
  *     bool CPN_readyFlag;
@@ -39,7 +39,7 @@
 class WAVEBeacon : public ::WaveShortMessage
 {
   protected:
-    long senderPsynm;
+    uint64_t senderPsynm;
     Coord senderVel;
     double senderAngle;
     bool CPN_readyFlag;
@@ -62,8 +62,8 @@ class WAVEBeacon : public ::WaveShortMessage
     virtual void parsimUnpack(omnetpp::cCommBuffer *b);
 
     // field getter/setter methods
-    virtual long getSenderPsynm() const;
-    virtual void setSenderPsynm(long senderPsynm);
+    virtual uint64_t getSenderPsynm() const;
+    virtual void setSenderPsynm(uint64_t senderPsynm);
     virtual Coord& getSenderVel();
     virtual const Coord& getSenderVel() const {return const_cast<WAVEBeacon*>(this)->getSenderVel();}
     virtual void setSenderVel(const Coord& senderVel);

@@ -43,7 +43,7 @@ class Eavesdropper : public BaseApplLayer {
 
 		simsignal_t sBcns;
         simsignal_t sPsynms;
-        set<unsigned long> encounteredPsynms;
+        set<uint64_t> encounteredPsynms;
         unsigned int nBcn;
 };
 

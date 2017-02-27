@@ -217,12 +217,12 @@ void WAVEBeacon::parsimUnpack(omnetpp::cCommBuffer *b)
     doParsimUnpacking(b,this->isEncrypted);
 }
 
-long WAVEBeacon::getSenderPsynm() const
+uint64_t WAVEBeacon::getSenderPsynm() const
 {
     return this->senderPsynm;
 }
 
-void WAVEBeacon::setSenderPsynm(long senderPsynm)
+void WAVEBeacon::setSenderPsynm(uint64_t senderPsynm)
 {
     this->senderPsynm = senderPsynm;
 }
@@ -391,7 +391,7 @@ const char *WAVEBeaconDescriptor::getFieldTypeString(int field) const
         field -= basedesc->getFieldCount();
     }
     static const char *fieldTypeStrings[] = {
-        "long",
+        "uint64_t",
         "Coord",
         "double",
         "bool",
@@ -450,7 +450,7 @@ std::string WAVEBeaconDescriptor::getFieldValueAsString(void *object, int field,
     }
     WAVEBeacon *pp = (WAVEBeacon *)object; (void)pp;
     switch (field) {
-        case 0: return long2string(pp->getSenderPsynm());
+        case 0: return uint642string(pp->getSenderPsynm());
         case 1: {std::stringstream out; out << pp->getSenderVel(); return out.str();}
         case 2: return double2string(pp->getSenderAngle());
         case 3: return bool2string(pp->getCPN_readyFlag());
@@ -469,7 +469,7 @@ bool WAVEBeaconDescriptor::setFieldValueAsString(void *object, int field, int i,
     }
     WAVEBeacon *pp = (WAVEBeacon *)object; (void)pp;
     switch (field) {
-        case 0: pp->setSenderPsynm(string2long(value)); return true;
+        case 0: pp->setSenderPsynm(string2uint64(value)); return true;
         case 2: pp->setSenderAngle(string2double(value)); return true;
         case 3: pp->setCPN_readyFlag(string2bool(value)); return true;
         case 4: pp->setIsEncrypted(string2bool(value)); return true;

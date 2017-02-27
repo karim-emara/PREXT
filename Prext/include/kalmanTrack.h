@@ -9,6 +9,7 @@
 #define KALMANTRACK_H_
 
 #include <Eigen/Dense>
+#include <stdint.h>
 using namespace Eigen;
 
 class bcnSample {
@@ -16,7 +17,7 @@ public:
    bcnSample() { bEncrypted = false;  vehId = psynm = 0; timestampe = 0; }
 
    double timestampe, px, vx, py, vy, angle;
-   unsigned long psynm;
+   uint64_t psynm;
    unsigned int vehId;
    bool bEncrypted;
 };
@@ -47,7 +48,7 @@ public:
     unsigned int lifeTime;
     unsigned int lastUpdateTime;
     unsigned int vehId;
-    unsigned long pseudonym;
+    uint64_t pseudonym;
 
     MatrixXd H, F, P, Q, S, R, K, Sinv;
     VectorXd x;

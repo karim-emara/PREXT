@@ -54,7 +54,7 @@ class VehicleTracker : public cSimpleModule
     vector<cModule *> dynmEavesdropper;
 
     NNPDA tracker;
-    map<unsigned long, bcnSample> rcvdBcns;
+    map<uint64_t, bcnSample> rcvdBcns;
 
     simsignal_t sVId;
     simsignal_t sMaxEnt;

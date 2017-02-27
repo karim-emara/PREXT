@@ -41,7 +41,7 @@ void BasePrivLayer::initialize(int stage)
 
 }
 void BasePrivLayer::finish() {
-    emit(sPsynmchng, (unsigned long)psynmCnt-1); //psynmCnt is initialized by 1
+    emit(sPsynmchng, (unsigned int)psynmCnt-1); //psynmCnt is initialized by 1
     emit(sLifetime, (simTime() - startTime).dbl());
     emit(sPtimes, (simTime() - psynmStartTime).dbl());
     recordParametersAsScalars();

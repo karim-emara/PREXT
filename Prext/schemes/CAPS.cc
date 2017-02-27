@@ -29,26 +29,26 @@ void CAPS::initialize(int stage)
 {
     BasePrivLayer::initialize(stage);
     if(stage==0){
-        maxGate = par("maxGate");
-        minPsynmLifetime = SimTime(par("minPsynmLifetime"), SimTimeUnit::SIMTIME_S);
-        maxPsynmLifetime = SimTime(par("maxPsynmLifetime"), SimTimeUnit::SIMTIME_S);
+        maxGate = par("maxGate").doubleValue();
+        minPsynmLifetime = SimTime(par("minPsynmLifetime").longValue(), SimTimeUnit::SIMTIME_S);
+        maxPsynmLifetime = SimTime(par("maxPsynmLifetime").longValue(), SimTimeUnit::SIMTIME_S);
 
-        initPsynmLifetime = SimTime(par("initPsynmLifetime"), SimTimeUnit::SIMTIME_S);
+        initPsynmLifetime = SimTime(par("initPsynmLifetime").longValue(), SimTimeUnit::SIMTIME_S);
         if (initPsynmLifetime < 0 || initPsynmLifetime >= maxPsynmLifetime) initPsynmLifetime = 0;
         BasePrivLayer::psynmStartTime = simTime() - initPsynmLifetime;
 
-        minSilentTime = SimTime(par("minSilentTime"), SimTimeUnit::SIMTIME_S);
-        maxSilentTime = SimTime(par("maxSilentTime"), SimTimeUnit::SIMTIME_S) ;
+        minSilentTime = SimTime(par("minSilentTime").longValue(), SimTimeUnit::SIMTIME_S);
+        maxSilentTime = SimTime(par("maxSilentTime").longValue(), SimTimeUnit::SIMTIME_S) ;
         ASSERT(minSilentTime < maxSilentTime);
 
-        missedBeaconsthreshold = par("missedBeaconsthreshold");
-        nSilentNeighbors = par("nSilentNeighbors");
+        missedBeaconsthreshold = par("missedBeaconsthreshold").longValue();
+        nSilentNeighbors = par("nSilentNeighbors").longValue();
 
         bSilent = false;
 
-        neighborhoodThresholdSq = par("neighborhoodThreshold").doubleValue();
+        neighborhoodThresholdSq = par("neighborhoodThreshold").longValue();
         neighborhoodThresholdSq *= neighborhoodThresholdSq;
-        dist2DelTrackSq = par("dist2DelTrack").doubleValue();
+        dist2DelTrackSq = par("dist2DelTrack").longValue();
         dist2DelTrackSq *= dist2DelTrackSq ;
 
         tracker.initNNPDAParam(30, 2, maxSilentTime.dbl());
