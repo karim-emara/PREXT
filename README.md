@@ -6,7 +6,7 @@
 3. Installation 
 4. Demo & Virtual Machine
 5. Further Information
-6. Citation  
+6. Citation
 
 ## 1. Introduction
 PREXT is a unified and extensible framework that simulate pseudonym change schemes (i.e., privacy schemes) in VANET. Although PREXT is mainly developed for VANET scenarios, but it can be used/adapted for simulations that let mobile nodes broadcast their spatio-temporal information periodically. The main assumption in PREXT is that nodes broadcast beacon messages every short time (e.g., 0.1-1s) containing its position, speed, time stamp and a changing pseudonym (i.e., temporary node identity). The general concept of privacy schemes in such scenarios is to change pseudonyms periodically followed by ceasing/encrypting beacon messages for a while to prevent linking consecutive messages originated from each vehicle. If the adversary is able to link messages over time, it can de-anonymize vehicle traces, re-identify drivers, and profile their trajectories which is a serious privacy risk. This privacy concept is different from preserving privacy in LBS, because VANET safety applications require precise and frequent location updates and cannot afford LBS privacy schemes such as k-anonymity, transformation, ...etc. 
@@ -18,14 +18,14 @@ PREXT is a unified and extensible framework that simulate pseudonym change schem
 - Several privacy metrics are supported such as traceability, entropy, anonymity set size and pseudonyms statistics.
 
 ## 3. Installation 
-(These steps are tested on ubuntu 16.04. Please tell us if these steps are working with other systems as well.)
-- Install omnet++-5.0, sumo-0.25.0, veins-4.4 as explained in http://veins.car2x.org/tutorial/
-- Download "Eigen 3.3" library http://eigen.tuxfamily.org/  and uncompress it to, let's say, "~/Eigen"
-- Download PREXT and move "Prext" folder to veins-4.4\src\veins\modules\
+(These steps are tested on ubuntu 18.04. Please tell us if these steps are working with other systems as well.)
+- Install omnet++-5.4.1, sumo-0.32.0, veins-4.7.1 as explained in http://veins.car2x.org/tutorial/
+- Download "Eigen 3.3.4" library http://eigen.tuxfamily.org/  and uncompress it to, let's say, "~/Eigen"
+- Download PREXT and move "Prext" folder to veins\src\veins\modules\
 - Change veins configurations to include PREXT during its build. Open veins properties by right click on "veins" project in the omnet++ IDE and select "Properties". Then, change the following:
 
 1. On the left tree, Expand "C/C++ General" node -> Select "Paths and Symbols":
-  * On the right view, Select "Includes" tab"/**GNU C++** ->  add the following paths "~/Eigen", "omnetpp-5.0/include/omnetpp" and "/veins/src/veins/modules/Prext/include"
+  * On the right view, Select "Includes" tab"/**GNU C++** ->  add the following paths "~/Eigen", "omnetpp-5.4.1/include/omnetpp" and "/veins/src/veins/modules/Prext/include"
 
 ![](img/config1.png?raw=true)
 
