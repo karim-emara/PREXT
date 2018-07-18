@@ -52,5 +52,5 @@ To run this virtual machine, you need to install VirtualBox (https://www.virtual
 Please refer to the publication included in the doc folder for a detailed description of the PREXT extension.
 
 ## 6. Citation
-If you use PREXT, we appreciate citing our paper:
-Karim Emara, "Poster: PREXT: Privacy Extension for Veins VANET Simulator", IEEE Vehicular Networking Conference (VNC), Dec. 2016, Columbus, Ohio, USA (to appear)
+If you use PREXT, we appreciate citing our poster abstract:
+Karim Emara, "[Poster: PREXT: Privacy Extension for Veins VANET Simulator](https://ieeexplore.ieee.org/abstract/document/7835979/)", IEEE Vehicular Networking Conference (VNC), Dec. 2016, Columbus, Ohio, USA
