@@ -150,5 +150,5 @@ void BasePrivLayer::handleLowerControl(cMessage* msg) {
     if (msg->getKind() == PrivLayerMessageKinds::MIX_ZONE_AD) {
         handleMixZoneAd(dynamic_cast<MixZoneAd*>(msg));
     }
-     sendControlUp(msg);
+    sendControlUp(msg);
  }
