@@ -26,7 +26,7 @@ void SLOW::initialize(int stage)
     if(stage==0){
         traci = TraCIMobilityAccess().get(getParentModule());
 
-        silentTimeThreshold = SimTime(par("silentTimeThreshold").longValue(), SIMTIME_S);
+        silentTimeThreshold = SimTime(par("silentTimeThreshold"), SIMTIME_S);
         speedThresholdSqr = par("speedThreshold").doubleValue();
         speedThresholdSqr *= speedThresholdSqr;
 

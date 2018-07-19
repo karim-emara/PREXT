@@ -24,11 +24,11 @@ void PeriodicalPC::initialize(int stage)
 {
     BasePrivLayer::initialize(stage);
     if(stage==0){
-        minPsynmLifetime = par("minPsynmLifetime").longValue();
-        maxPsynmLifetime = par("maxPsynmLifetime").longValue();
+        minPsynmLifetime = par("minPsynmLifetime");
+        maxPsynmLifetime = par("maxPsynmLifetime");
         ASSERT(minPsynmLifetime <= maxPsynmLifetime);
 
-        initPsynmLifetime = par("initPsynmLifetime").longValue();
+        initPsynmLifetime = par("initPsynmLifetime");
         if (initPsynmLifetime < 0 || initPsynmLifetime >= minPsynmLifetime) initPsynmLifetime = 0;
 
         changePsynmEvt = new cMessage("chngPsynm", PrivLayerMessageKinds::CHANGE_PSYNM);

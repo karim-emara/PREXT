@@ -27,7 +27,7 @@ void CPN::initialize(int stage)
     if(stage==0){
         traci = TraCIMobilityAccess().get(getParentModule());
         neighborRadius = par("neighborRadius").doubleValue();
-        kNeighbors = par("kNeighbors").longValue();
+        kNeighbors = par("kNeighbors");
         readyFlag = false;
         setReadyFlagReceived = false;
         nNeighbor = 0;
