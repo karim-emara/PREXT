@@ -48,7 +48,7 @@ protected:
 
      virtual void handleSelfMsg(cMessage* msg) {};
 
-    virtual void handleLowerMsg(cMessage* msg) ;
+    virtual void handleLowerMsg(cMessage* msg);
 
     virtual void handleLowerControl(cMessage* msg);
 

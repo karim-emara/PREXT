@@ -27,7 +27,7 @@ simple MixRSU like IBaseApplLayer
         int dataLength @unit("byte"); // length of the message data in bytes
         double advertiseInterval @unit("s");
         
-        int zoneType; // 1 circular, 2 convex polygon
+        int zoneType = default(1); // 1 circular, 2 convex polygon
         int zoneCircularRange @unit("m");
         string zoneConvexPolygons; // x1, y1; x2, y2; x3, y3; | x4, y4; x5, y5; x6, y6; x7, y7;
           
