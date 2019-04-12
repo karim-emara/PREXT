@@ -45,8 +45,12 @@ We created an example scenario for PREXT (prextdemo folder) on a map of the city
   
 To run the demo, copy "prextdemo" folder to "/veins/examples/". In the omnet.ini configuration file, we have added a configuration section for each privacy scheme with example parameter settings. To test one of these schemes, you need to run the simulation with its corresponding configuration section. Don't forgot to run the "sumolaunch" script in background. At the end of the simulation, the tracking results are displayed in the simulation log showing various privacy metrics such as traceability and entropy. In addition, 
 
-We compiled a virtual machine running ubuntu 16.04 in which OMNeT++, SUMO, Veins and PREXT installed and configured. You can download this machine here: https://tinyurl.com/y7nfub6v
-To run this virtual machine, you need to install VirtualBox (https://www.virtualbox.org/wiki/Downloads). 
+We compiled a virtual machine running ubuntu 16.04 in which OMNeT++, SUMO, Veins and PREXT installed and configured. You can download this machine here: https://tinyurl.com/y7nfub6v. To run this virtual machine, you need to install VirtualBox (https://www.virtualbox.org/wiki/Downloads). Also, you need to change the last line in the ~/.bash_rc file which starts with "export SUMO_HOME = ..." to "export SUMO_HOME=$HOME/src/sumo-0.25.0" without quotes
+
+To run the simulation, open a command terminal (Ctrl+Alt+T) and type this command to run SUMO and press Enter.
+~/src/veins-veins-4.4/sumo-launchd.py -vv -c ~/src/sumo-0.25.0/bin/sumo
+
+In OMNeT++ IDE, select the omnet.ini file and press run in the toolbar.
 
 ## 5. Further Information
 Please refer to the publication included in the doc folder for a detailed description of the PREXT extension.
