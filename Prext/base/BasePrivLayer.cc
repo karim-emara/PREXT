@@ -116,21 +116,25 @@ bool BasePrivLayer::isInMixZone(){
 }
 void BasePrivLayer::handleMixZoneAd(MixZoneAd* ad) {
     mixZoneInfo mzi;
+    mzi.address = ad->getSenderAddress();
     mzi.zoneType = ad->getZoneType();
-    if (ad->getZoneType() == 1) {   //circular zone
-        privEV << "Circular mix zone ad of range (" << ad->getCircularRange() << ")received. Distance: " << ad->getSenderPos().distance(traci->getCurrentPosition()) << endl;
-        if (ad->getSenderPos().distance(traci->getCurrentPosition()) <= ad->getCircularRange()) {  // and I'm in this zone range already, then add it to the encountered zones
-            if (mixZones.find(ad->getSenderAddress()) == mixZones.end()) {
+    mzi.circularPos = ad->getSenderPos();
+    mzi.circularRange = ad->getCircularRange();
+
+    if (mzi.zoneType == 1) {   //circular zone
+        privEV << "Circular mix zone ad of range (" << mzi.circularRange << ")received. Distance: " << mzi.circularPos.distance(traci->getCurrentPosition()) << endl;
+        if (mzi.circularPos.distance(traci->getCurrentPosition()) <= mzi.circularRange) {  // and I'm in this zone range already, then add it to the encountered zones
+            if (mixZones.find(mzi.address) == mixZones.end()) {
                 // this ad does not belong to a mix-zone currently encountered, then declare a new mix zone found
                 // even if the car is currently in a mix zone.
-                emit(sMixzone, (unsigned long)1);
+                emit(sMixzone, 1);
 
                 if (mxzStartTime == 0) mxzStartTime = simTime();    //but don't override start time
+
+                mixZones[mzi.address] = mzi;     // add the mix-zone information
+
+                privEV << "Entered mix-zone at " << traci->getCurrentPosition() << ", which located at " << mzi.circularPos << endl;
             }
-            mzi.circularPos = ad->getSenderPos();
-            mzi.circularRange = ad->getCircularRange();
-            mixZones[ad->getSenderAddress()] = mzi;     // add or update the mix-zone information
-            privEV << "Entered/updated mix-zone at " << traci->getCurrentPosition() << ", which located at " << mzi.circularPos << endl;
         }
     }
     else {
@@ -150,5 +154,5 @@ void BasePrivLayer::handleLowerControl(cMessage* msg) {
     if (msg->getKind() == PrivLayerMessageKinds::MIX_ZONE_AD) {
         handleMixZoneAd(dynamic_cast<MixZoneAd*>(msg));
     }
-     sendControlUp(msg);
+    sendControlUp(msg);
  }

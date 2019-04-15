@@ -29,13 +29,13 @@ void RSP::initialize(int stage)
 {
     BasePrivLayer::initialize(stage);
     if(stage==0){
-        psynmLifetime = par("psynmLifetime").longValue();
+        psynmLifetime = par("psynmLifetime");
         psynmLifetime_t = SimTime(psynmLifetime, SIMTIME_S);
-        initPsynmLifetime = par("initPsynmLifetime").longValue();
+        initPsynmLifetime = par("initPsynmLifetime");
         if (initPsynmLifetime < 0 || initPsynmLifetime >= psynmLifetime) initPsynmLifetime = 0;
 
-        minSilentTime = par("minSilentTime").longValue();
-        maxSilentTime = par("maxSilentTime").longValue();
+        minSilentTime = par("minSilentTime");
+        maxSilentTime = par("maxSilentTime");
         ASSERT(minSilentTime < maxSilentTime);
 
         changePsynmEvt = new cMessage("chngPsynm", PrivLayerMessageKinds::CHANGE_PSYNM);

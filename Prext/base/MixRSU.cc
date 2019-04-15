@@ -60,13 +60,14 @@ vector<Convex> MixRSU::parseConvexPolygon(string strPolygon)  {
 MixZoneAd* MixRSU::prepareAdvertise() {
 
     MixZoneAd* zad = new MixZoneAd("MIX_AD");
+    int zoneType = par("zoneType");
     zad->addBitLength(headerLength);
     zad->addByteLength(dataLength);
 
     zad->setKind(PrivLayerMessageKinds::MIX_ZONE_AD);
     zad->setChannelNumber(Channels::CCH);
     zad->setSenderAddress(myId);
-    zad->setRecipientAddress(0);
+    zad->setRecipientAddress(LAddress::L2BROADCAST());
     zad->setSerial(-1);
     zad->setWsmData("");
     zad->setWsmLength(headerLength+dataLength);
@@ -75,13 +76,14 @@ MixZoneAd* MixRSU::prepareAdvertise() {
     BaseMobility* mob = (BaseMobility*)this->getParentModule()->getSubmodule("mobility");
     Coord pos(mob->par("x").doubleValue(),mob->par("y").doubleValue(),mob->par("z").doubleValue());
     zad->setSenderPos(pos);
-    zad->setZoneType(par("zoneType").longValue());
+    zad->setZoneType(zoneType);
 
-    if (par("zoneType").longValue() == 1) { //circular
-        zad->setCircularRange(par("zoneCircularRange").longValue());
+    if (zoneType == 1) { //circular
+        int circularRange = par("zoneCircularRange");
+        zad->setCircularRange(circularRange);
         cDisplayString& dispStr = getParentModule()->getDisplayString();
         stringstream  str;
-        str << "p=" << mob->par("x").doubleValue() << "," << mob->par("y").doubleValue() << ";r= " << par("zoneCircularRange").doubleValue() << ",lavender,,1;i=block/routing;is=s";
+        str << "p=" << mob->par("x").doubleValue() << "," << mob->par("y").doubleValue() << ";r= " << circularRange << ",lavender,,1;i=block/routing;is=s";
         dispStr.parse(str.str().c_str());
     }
     else {
@@ -93,7 +95,6 @@ MixZoneAd* MixRSU::prepareAdvertise() {
     return zad;
 }
 void MixRSU::handleSelfMsg(cMessage* msg) { // it an event/self-msg that has be called by scheduleAt with certain time
-
     switch (msg->getKind()) {
         case PrivLayerMessageKinds::RSU_ADV_EVT: {
             MixZoneAd * msg = localAd->dup();

@@ -48,7 +48,7 @@ protected:
 
      virtual void handleSelfMsg(cMessage* msg) {};
 
-    virtual void handleLowerMsg(cMessage* msg) ;
+    virtual void handleLowerMsg(cMessage* msg);
 
     virtual void handleLowerControl(cMessage* msg);
 
@@ -60,6 +60,7 @@ protected:
     void handleMixZoneAd(MixZoneAd* ad);
 
     struct mixZoneInfo {
+      int address;
       int zoneType;
       Coord circularPos;
       int circularRange;

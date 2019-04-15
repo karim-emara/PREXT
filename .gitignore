@@ -1,3 +1,7 @@
+# Compiled message files
+Prext/**/*_m.h
+Prext/**/*_m.cc
+
 # Compiled Object files
 *.slo
 *.lo

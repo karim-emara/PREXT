@@ -45,7 +45,6 @@ void PrivateSampleApp::initialize(int stage) {
 	}
 }
 void PrivateSampleApp::handleSelfMsg(cMessage* msg) { // it an event/self-msg that has be called by scheduleAt with certain time
-
     switch (msg->getKind()) {
         case PrivateApplMessageKinds::SEND_BEACON_EVT: {
 
@@ -65,8 +64,6 @@ void PrivateSampleApp::handleSelfMsg(cMessage* msg) { // it an event/self-msg th
 }
 
 void PrivateSampleApp::handleLowerMsg(cMessage* msg) {
-
-
     if (msg->getKind() == PrivateApplMessageKinds::WAVE_BEACON) {
         onBeacon(dynamic_cast<WAVEBeacon*>(msg));
     }
