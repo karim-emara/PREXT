@@ -170,8 +170,8 @@ void VehicleTracker::finish() {
         recordScalar("trackerEvalTime", double(clock() - trackerInitTime)/CLOCKS_PER_SEC);
 
         EV   << "Elapsed Time: " << elapsedtime << endl
-            << "Evaluation Time: " << double(clock() - trackerInitTime)/CLOCKS_PER_SEC << endl
-            << "Number of traces: " << nVeh << endl
+             << "Evaluation Time: " << double(clock() - trackerInitTime)/CLOCKS_PER_SEC << endl
+             << "Number of traces: " << nVeh << endl
              << "Number of traces that changed pseudonyms: " << nChngPsynmVeh << endl
              << "Traceability %90: " << trace90/nVeh*100 << endl
              << "Normalized traceability %90: " << ntrace90/nChngPsynmVeh*100 << endl
